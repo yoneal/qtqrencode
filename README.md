@@ -27,7 +27,7 @@ Then use it in your code like so,
 ...
 
 QQREncode encoder;
-encoder.encode(QString("abcdefghijklmnopqrstuvwxyz 1234567890$%*+-./:")
+encoder.encode(QString("abcdefghijklmnopqrstuvwxyz 1234567890$%*+-./:");
 QImage qrcode = encoder.toQImage();
 qrcode.scaled(150,150).save("qrcode.jpg","JPG");
 ```
