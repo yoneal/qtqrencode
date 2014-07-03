@@ -21,19 +21,19 @@ HEADERS += \
 
 win32:CONFIG(release, debug|release) {
     # WINDOWS RELEASE
-    PRE_TARGETDEPS += $$OUT_PWD/../qqrencode/release/libqtqrencode.dll
+    PRE_TARGETDEPS += $$OUT_PWD/../qqrencode/release/qtqrencode.dll
     LIBS += -L$$OUT_PWD/../qqrencode/release/ -lqtqrencode
 
 } else:win32:CONFIG(debug, debug|release) {
     # WINDOWS DEBUG
-    PRE_TARGETDEPS += $$OUT_PWD/../qqrencode/debug/libqtqrencode.dll
+    PRE_TARGETDEPS += $$OUT_PWD/../qqrencode/debug/qtqrencode.dll
     LIBS += -L$$OUT_PWD/../qqrencode/debug/ -lqtqrencode
 } else:CONFIG(release, debug|release) {
-    PRE_TARGETDEPS += $$OUT_PWD/../qqrencode/release/libqtqrencode.so
-    LIBS += -L$$OUT_PWD/../qqrencode/release/ -lqtqrencode
+    PRE_TARGETDEPS += $$OUT_PWD/../qqrencode/libqtqrencode.so
+    LIBS += -L$$OUT_PWD/../qqrencode/ -lqtqrencode
 } else:CONFIG(debug, debug|release) {
-    PRE_TARGETDEPS += $$OUT_PWD/../qqrencode/debug/libqtqrencode.so
-    LIBS += -L$$OUT_PWD/../qqrencode/debug/ -lqtqrencode
+    PRE_TARGETDEPS += $$OUT_PWD/../qqrencode/libqtqrencode.so
+    LIBS += -L$$OUT_PWD/../qqrencode/ -lqtqrencode
 }
 
 INCLUDEPATH += $$PWD/../qqrencode

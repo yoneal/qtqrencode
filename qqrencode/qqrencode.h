@@ -1,7 +1,7 @@
 #ifndef QQRENCODE_H
 #define QQRENCODE_H
 
-#include <QTCore>
+#include <QtCore>
 
 #include "libqtqrencode_global.h"
 

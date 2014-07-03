@@ -5,7 +5,7 @@ QT  += core gui svg
   QMAKE_CXXFLAGS_RELEASE += -std=c++11 -Wno-write-strings
 }
 
-TARGET = libqtqrencode
+TARGET = qtqrencode
 TEMPLATE = lib
 
 DEFINES += LIBQTQRENCODE_LIBRARY
@@ -15,6 +15,11 @@ SOURCES += qqrencode.cpp
 HEADERS += qqrencode.h \
     libqtqrencode_global.h \
     qqrencode_p.h
+
+header_files.files = qqrencode.h \
+  libqtqrencode_global.h
+header_files.path = /usr/include
+INSTALLS += header_files
 
 win32 {
   LIBS += -L$$PWD/../lib/qrencode -lqrencode
