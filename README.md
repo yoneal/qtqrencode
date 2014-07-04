@@ -6,10 +6,14 @@ Qt 5 wrapper and renderer for [qrencode](https://github.com/fukuchi/libqrencode)
 
 You will need [Qt 5+](http://qt-project.org/downloads) and [qrencode 3.4+](http://fukuchi.org/works/qrencode). Clone this repo and build it with Qt's qmake:
 ```bash
+sudo apt-get install libqrencode-dev
 git clone https://github.com/yoneal/qtqrencode
 cd qtqrencode
 mkdir build && cd build
 qmake -Wall ../qtqrencode.pro
+make
+# You can install it, if you want..
+sudo make install
 ```
 Or, you can just open the project using Qt Creator.
 
@@ -20,7 +24,14 @@ Just grab the library, along with the following header files:
 * qqrencode.h
 * libqtqrencode_global.h
 
-Then use it in your code like so,
+Then include it in your project like so,
+```
+LIBS += -lqtqrencode
+```
+
+No need to manually copy the files if you installed it in the system directories..
+
+## Profit
 ```
 #include <qqrencode.h>
 
