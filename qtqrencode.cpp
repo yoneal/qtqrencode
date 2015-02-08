@@ -55,16 +55,16 @@ void QREncode::setLevel(QREncode::ErrorCorrectionLevel value)
 {
     Q_D(QREncode);
     switch (value) {
-    case LOW:
+    case ErrorCorrectionLevelLow:
         d->m_level = QR_ECLEVEL_L;
         break;
-    case MEDIUM:
+    case ErrorCorrectionLevelMedium:
         d->m_level = QR_ECLEVEL_M;
         break;
-    case QUARTILE:
+    case ErrorCorrectionLevelQuartile:
         d->m_level = QR_ECLEVEL_Q;
         break;
-    case HIGH:
+    case ErrorCorrectionLevelHigh:
         d->m_level = QR_ECLEVEL_H;
         break;
     }
@@ -75,15 +75,15 @@ QREncode::ErrorCorrectionLevel QREncode::getLevel() const
     Q_D(const QREncode);
     switch (d->m_level) {
     case QR_ECLEVEL_L:
-        return LOW;
+        return ErrorCorrectionLevelLow;
     case QR_ECLEVEL_M:
-        return MEDIUM;
+        return ErrorCorrectionLevelMedium;
     case QR_ECLEVEL_Q:
-        return QUARTILE;
+        return ErrorCorrectionLevelQuartile;
     case QR_ECLEVEL_H:
-        return HIGH;
+        return ErrorCorrectionLevelHigh;
     }
-    return LOW;
+    return ErrorCorrectionLevelLow;
 }
 
 //bool QQREncode::encode(QString code, QString output)

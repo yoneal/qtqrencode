@@ -1,6 +1,7 @@
 #ifndef QQRENCODE_H
 #define QQRENCODE_H
 
+// Qt includes
 #include <QtCore>
 
 class QREncodePrivate;
@@ -11,10 +12,10 @@ class QREncode {
 
 public:
     enum ErrorCorrectionLevel {
-        LOW,
-        MEDIUM,
-        QUARTILE,
-        HIGH
+        ErrorCorrectionLevelLow,
+        ErrorCorrectionLevelMedium,
+        ErrorCorrectionLevelQuartile,
+        ErrorCorrectionLevelHigh
     };
 
     QREncode();
