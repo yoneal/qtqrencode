@@ -8,30 +8,10 @@ QT  += core gui svg
 TARGET = qtqrencode
 TEMPLATE = lib
 
-DEFINES += LIBQTQRENCODE_LIBRARY
+SOURCES += \
+    qtqrencode.cpp
 
-SOURCES += qqrencode.cpp
+HEADERS += \
+    qtqrencode.h \
+    qtqrencode_p.h
 
-HEADERS += qqrencode.h \
-    libqtqrencode_global.h \
-    qqrencode_p.h
-
-header_files.files = qqrencode.h \
-  libqtqrencode_global.h
-header_files.path = /usr/include
-INSTALLS += header_files
-
-win32 {
-  LIBS += -L$$PWD/../lib/qrencode -lqrencode
-} else {
-  target.path = /usr/lib
-  INSTALLS += target
-  macx {
-      LIBS += -L/usr/local/lib -lqrencode
-  } else {
-      LIBS += -lqrencode
-  }
-}
-
-INCLUDEPATH += $$PWD/../lib/qrencode/include
-DEPENDPATH += $$PWD/../lib/qrencode/include
