@@ -3,3 +3,5 @@ INCLUDEPATH += \
 
 LIBS += \
     -L../qtqrencode -lqtqrencode
+
+LIBS += -lqrencode
