@@ -3,7 +3,12 @@
 #include "qtqrencode_p.h"
 
 // QrEncode includes
+#ifdef Q_OS_MAC
+// This is where brew puts the header
+#include "/usr/local/include/qrencode.h"
+#else
 #include <qrencode.h>
+#endif
 
 // Qt includes
 #include <QDateTime>
@@ -251,10 +256,12 @@ bool QREncode::toSVG(QString output, int size)
 QImage QREncode::toQImage(int size)
 {
     Q_D(QREncode);
-    if (size < 0) throw std::invalid_argument("Invalid size");
+    if (size < 0) {
+        return QImage();
+    }
 
     if (d->m_code == NULL) {
-        std::logic_error("No qr code to convert");
+        return QImage();
     }
 
     int symwidth = d->m_code->width + d->m_margin * 2;

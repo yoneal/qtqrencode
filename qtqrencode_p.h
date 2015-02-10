@@ -5,7 +5,12 @@
 #include "qtqrencode.h"
 
 // QrEncode includes
+#ifdef Q_OS_MAC
+// This is where brew puts the header
+#include "/usr/local/include/qrencode.h"
+#else
 #include <qrencode.h>
+#endif
 
 // Qt includes
 #include <QPainter>
