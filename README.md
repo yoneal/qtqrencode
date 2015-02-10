@@ -1,8 +1,14 @@
+[![Qt Pods](http://qt-pods.org/assets/logo.png "Qt Pods")](http://qt-pods.org)
 ## qtqrencode
 
 Qt 5 wrapper and renderer for [qrencode](https://github.com/fukuchi/libqrencode) (QR Code encoding) library.
 
-## Build
+## Build (via qt-pods)
+
+You can add QrEncode to your project with a single click using qt-pods. Read more about qt-pods here:
+https://github.com/cybercatalyst/qt-pods
+
+## Manual build
 
 You will need [Qt 5+](http://qt-project.org/downloads) and [qrencode 3.4+](http://fukuchi.org/works/qrencode). Clone this repo and build it with Qt's qmake:
 ```bash

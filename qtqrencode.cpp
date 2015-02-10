@@ -1,17 +1,26 @@
-#include "qqrencode.h"
-#include "qqrencode_p.h"
+// Own includes
+#include "qtqrencode.h"
+#include "qtqrencode_p.h"
 
+// QrEncode includes
+#ifdef Q_OS_MAC
+// This is where brew puts the header
+#include "/usr/local/include/qrencode.h"
+#else
+#include <qrencode.h>
+#endif
+
+// Qt includes
 #include <QDateTime>
 #include <QSvgGenerator>
 
 #define INCHES_PER_METER (100.0/2.54)
 
-QQREncodePrivate::~QQREncodePrivate()
-{
+QREncodePrivate::~QREncodePrivate() {
     QRcode_free(m_code);
 }
 
-void QQREncodePrivate::paint(QPainter &painter)
+void QREncodePrivate::paint(QPainter &painter)
 {
     unsigned char *row, *p;
     int x, y;
@@ -38,48 +47,48 @@ void QQREncodePrivate::paint(QPainter &painter)
     }
 }
 
-QQREncode::QQREncode()
-    : d_ptr(new QQREncodePrivate(this))
+QREncode::QREncode()
+    : d_ptr(new QREncodePrivate(this))
 {
 }
 
-QQREncode::~QQREncode()
+QREncode::~QREncode()
 {
 }
 
-void QQREncode::setLevel(QQREncode::ErrorCorrectionLevel value)
+void QREncode::setLevel(QREncode::ErrorCorrectionLevel value)
 {
-    Q_D(QQREncode);
+    Q_D(QREncode);
     switch (value) {
-    case LOW:
+    case ErrorCorrectionLevelLow:
         d->m_level = QR_ECLEVEL_L;
         break;
-    case MEDIUM:
+    case ErrorCorrectionLevelMedium:
         d->m_level = QR_ECLEVEL_M;
         break;
-    case QUARTILE:
+    case ErrorCorrectionLevelQuartile:
         d->m_level = QR_ECLEVEL_Q;
         break;
-    case HIGH:
+    case ErrorCorrectionLevelHigh:
         d->m_level = QR_ECLEVEL_H;
         break;
     }
 }
 
-QQREncode::ErrorCorrectionLevel QQREncode::getLevel() const
+QREncode::ErrorCorrectionLevel QREncode::getLevel() const
 {
-    Q_D(const QQREncode);
+    Q_D(const QREncode);
     switch (d->m_level) {
     case QR_ECLEVEL_L:
-        return LOW;
+        return ErrorCorrectionLevelLow;
     case QR_ECLEVEL_M:
-        return MEDIUM;
+        return ErrorCorrectionLevelMedium;
     case QR_ECLEVEL_Q:
-        return QUARTILE;
+        return ErrorCorrectionLevelQuartile;
     case QR_ECLEVEL_H:
-        return HIGH;
+        return ErrorCorrectionLevelHigh;
     }
-    return LOW;
+    return ErrorCorrectionLevelLow;
 }
 
 //bool QQREncode::encode(QString code, QString output)
@@ -99,61 +108,61 @@ QQREncode::ErrorCorrectionLevel QQREncode::getLevel() const
 //}
 
 
-void QQREncode::setVersion(int version)
+void QREncode::setVersion(int version)
 {
-    Q_D(QQREncode);
+    Q_D(QREncode);
     // 1 - 40
     if (version > 0 && version <= 40)
         d->m_version = version;
 }
 
-int QQREncode::version() const
+int QREncode::version() const
 {
-    Q_D(const QQREncode);
+    Q_D(const QREncode);
     return d->m_version;
 }
 
-void QQREncode::setMargin(int value)
+void QREncode::setMargin(int value)
 {
-    Q_D(QQREncode);
+    Q_D(QREncode);
     if (value > -1)
         d->m_margin = value;
 }
 
-int QQREncode::margin() const
+int QREncode::margin() const
 {
-    Q_D(const QQREncode);
+    Q_D(const QREncode);
     return d->m_margin;
 }
 
-void QQREncode::setMicro(bool value)
+void QREncode::setMicro(bool value)
 {
-    Q_D(QQREncode);
+    Q_D(QREncode);
     d->m_micro = (value) ? 1 : 0;
 }
 
-bool QQREncode::isMicro() const
+bool QREncode::isMicro() const
 {
-    Q_D(const QQREncode);
+    Q_D(const QREncode);
     return (d->m_micro == 1) ? true : false;
 }
 
-void QQREncode::setBackground(QColor color)
+void QREncode::setBackground(QColor color)
 {
-    Q_D(QQREncode);
+    Q_D(QREncode);
     d->m_bg.setColor(color);
 }
 
-void QQREncode::setForeground(QColor color)
+void QREncode::setForeground(QColor color)
 {
-    Q_D(QQREncode);
+    Q_D(QREncode);
     d->m_fg.setColor(color);
     d->m_pen.setColor(color);
 }
 
-bool QQREncode::encode(QByteArray input)
+bool QREncode::encode(QByteArray input)
 {
-    Q_D(QQREncode);
+    Q_D(QREncode);
     QRcode *c = NULL;
     if (input.isEmpty()) return false;
     if (d->m_micro) {
@@ -171,9 +180,9 @@ bool QQREncode::encode(QByteArray input)
     return true;
 }
 
-bool QQREncode::encode(QString input, bool caseSensitive)
+bool QREncode::encode(QString input, bool caseSensitive)
 {
-    Q_D(QQREncode);
+    Q_D(QREncode);
     if (input.isEmpty()) return false;
     QRcode *c = NULL;
     if (d->m_micro) {
@@ -197,9 +206,9 @@ bool QQREncode::encode(QString input, bool caseSensitive)
     return true;
 }
 
-bool QQREncode::encodeKanji(QByteArray input, bool caseSensitive)
+bool QREncode::encodeKanji(QByteArray input, bool caseSensitive)
 {
-    Q_D(QQREncode);
+    Q_D(QREncode);
     if (input.isEmpty()) return false;
     QRcode *c = NULL;
     if (d->m_micro) {
@@ -223,9 +232,9 @@ bool QQREncode::encodeKanji(QByteArray input, bool caseSensitive)
     return true;
 }
 
-bool QQREncode::toSVG(QString output, int size)
+bool QREncode::toSVG(QString output, int size)
 {
-    Q_D(QQREncode);
+    Q_D(QREncode);
     if (output.isEmpty() || d->m_code == NULL) {
         return false;
     }
@@ -244,13 +253,15 @@ bool QQREncode::toSVG(QString output, int size)
     return true;
 }
 
-QImage QQREncode::toQImage(int size)
+QImage QREncode::toQImage(int size)
 {
-    Q_D(QQREncode);
-    if (size < 0) throw std::invalid_argument("Invalid size");
+    Q_D(QREncode);
+    if (size < 0) {
+        return QImage();
+    }
 
     if (d->m_code == NULL) {
-        std::logic_error("No qr code to convert");
+        return QImage();
     }
 
     int symwidth = d->m_code->width + d->m_margin * 2;

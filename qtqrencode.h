@@ -1,27 +1,25 @@
 #ifndef QQRENCODE_H
 #define QQRENCODE_H
 
+// Qt includes
 #include <QtCore>
 
-#include "libqtqrencode_global.h"
+class QREncodePrivate;
 
-class QQREncodePrivate;
-
-class LIBQTQRENCODESHARED_EXPORT QQREncode
-{
+class QREncode {
     Q_GADGET
     Q_ENUMS(ErrorCorrectionLevel)
 
 public:
     enum ErrorCorrectionLevel {
-        LOW,
-        MEDIUM,
-        QUARTILE,
-        HIGH
+        ErrorCorrectionLevelLow,
+        ErrorCorrectionLevelMedium,
+        ErrorCorrectionLevelQuartile,
+        ErrorCorrectionLevelHigh
     };
 
-    QQREncode();
-    ~QQREncode();
+    QREncode();
+    ~QREncode();
 
     void setLevel(ErrorCorrectionLevel value);
     ErrorCorrectionLevel getLevel() const;
@@ -44,9 +42,9 @@ public:
     // ToDo: encode structured, rle
 
 private:
-    Q_DISABLE_COPY(QQREncode)
-    QScopedPointer<QQREncodePrivate> d_ptr;
-    Q_DECLARE_PRIVATE(QQREncode)
+    Q_DISABLE_COPY(QREncode)
+    QScopedPointer<QREncodePrivate> d_ptr;
+    Q_DECLARE_PRIVATE(QREncode)
 };
 
 #endif // QQRENCODE_H
