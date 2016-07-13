@@ -3,7 +3,6 @@
 
 #include <QList>
 #include <QObject>
-#include <QtTest>
 #include <QStringList>
 
 /**
@@ -16,12 +15,12 @@ class TestRunner : public QObject
     Q_OBJECT
 public:
     explicit TestRunner(QStringList args, QObject *parent = 0);
-    
+
     void addTest(QObject *test);
 
 signals:
     void finished(int result);
-    
+
 public slots:
     void run();
 

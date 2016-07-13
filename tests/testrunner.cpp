@@ -1,4 +1,5 @@
 #include "testrunner.h"
+#include <QtTest/QTest>
 
 TestRunner::TestRunner(QStringList args, QObject *parent) :
     QObject(parent),

@@ -1,7 +1,7 @@
 #include "qqrencodetestsuite.h"
-
 #include <qqrencode.h>
 #include <QTextCodec>
+#include <QImage>
 #include <QtTest/QTest>
 
 const QString RESULTS_PATH = "./results/";
@@ -59,4 +59,3 @@ void QQREncodeTestSuite::encodeKanji()
     QImage code = encoder.toQImage();
     code.scaled(200,200).save(RESULTS_PATH + "kanji.png","PNG");
 }
-

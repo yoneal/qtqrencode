@@ -2,7 +2,6 @@
 #define QQRENCODE_P_H
 
 #include "qqrencode.h"
-
 #include <qrencode.h>
 #include <QPainter>
 

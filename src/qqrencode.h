@@ -1,13 +1,12 @@
 #ifndef QQRENCODE_H
 #define QQRENCODE_H
 
+#include "qqrencode_global.h"
 #include <QtCore>
-
-#include "libqtqrencode_global.h"
 
 class QQREncodePrivate;
 
-class LIBQTQRENCODESHARED_EXPORT QQREncode
+class QQRENCODE_EXPORT QQREncode
 {
     Q_GADGET
     Q_ENUMS(ErrorCorrectionLevel)

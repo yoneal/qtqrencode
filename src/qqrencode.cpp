@@ -1,8 +1,8 @@
 #include "qqrencode.h"
 #include "qqrencode_p.h"
-
 #include <QDateTime>
 #include <QSvgGenerator>
+#include <QLibrary>
 
 #define INCHES_PER_METER (100.0/2.54)
 
